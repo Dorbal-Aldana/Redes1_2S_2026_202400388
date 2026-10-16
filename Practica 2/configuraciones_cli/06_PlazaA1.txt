@@ -1,0 +1,63 @@
+!
+! RECONSTRUCCION PROPUESTA de PlazaA1: NO es un show running-config extraido.
+! Verifique los puertos fisicos en su propio .pkt antes de aplicar.
+!
+enable
+configure terminal
+hostname PlazaA1
+no ip domain-lookup
+vtp domain 202400388
+vtp version 1
+vtp mode client
+vtp password Cayala202400388
+spanning-tree mode rapid-pvst
+interface Fa0/1
+ description Hacia_SW-Plaza_Fa0/3
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,18,99
+ no shutdown
+ exit
+interface Fa0/2
+ description Hacia_PlazaA2_Fa0/2
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,18,99
+ no shutdown
+ exit
+interface Fa0/10
+ description Equipo_PC0
+ switchport mode access
+ switchport access vlan 18
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+ exit
+interface Fa0/11
+ description Equipo_PC1
+ switchport mode access
+ switchport access vlan 18
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+ exit
+interface range FastEthernet0/3 - 9
+ description BLACKHOLE_PUERTO_SIN_USO
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+ exit
+interface range FastEthernet0/12 - 24
+ description BLACKHOLE_PUERTO_SIN_USO
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+ exit
+interface range GigabitEthernet0/1 - 2
+ description BLACKHOLE_SIN_USO
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+ exit
+end
+write memory

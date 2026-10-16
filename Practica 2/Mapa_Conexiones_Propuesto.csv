@@ -1,0 +1,38 @@
+﻿Equipo A,Puerto A,Equipo B,Puerto B,Tipo
+SW-Corp,Fa0/1,SW-Plaza,Fa0/1,Trunk
+SW-Cardales,Fa0/1,SW-Plaza,Fa0/2,Trunk
+PlazaA1,Fa0/1,SW-Plaza,Fa0/3,Trunk
+PlazaA2,Fa0/1,SW-Plaza,Fa0/4,Trunk
+SW-Paseo,Gi0/1,SW-Plaza,Gi0/1,LACP Po1
+SW-Paseo,Gi0/2,SW-Plaza,Gi0/2,LACP Po1
+SW-Paseo,Fa0/2,SW-Lirios,Fa0/1,Trunk
+SW-Corp,Fa0/3,SW-Lirios,Fa0/2,Trunk
+LiriosA1,Fa0/1,SW-Lirios,Fa0/3,Trunk
+SW-Paseo,Fa0/1,SW-Corp,Fa0/2,Trunk
+CorpA1,Fa0/1,SW-Corp,Fa0/4,Trunk
+CorpA1,Fa0/2,SW-Corp,Fa0/5,Trunk
+PaseoA1,Fa0/1,SW-Paseo,Fa0/3,Trunk
+PaseoA2,Fa0/1,SW-Paseo,Fa0/4,Trunk
+SW-Cardales,Fa0/2,PC4,Fa0,Acceso
+SW-Cardales,Fa0/3,PC5,Fa0,Acceso
+SW-Cardales,Fa0/4,PC6,Fa0,Acceso
+SW-Cardales,Fa0/5,PC7,Fa0,Acceso
+PlazaA2,Fa0/2,PlazaA1,Fa0/2,Trunk
+PlazaA1,Fa0/10,PC0,Fa0,Acceso
+PlazaA1,Fa0/11,PC1,Fa0,Acceso
+PlazaA2,Fa0/10,PC2,Fa0,Acceso
+PlazaA2,Fa0/11,PC3,Fa0,Acceso
+CorpA1,Fa0/10,PC8,Fa0,Acceso
+CorpA1,Fa0/11,Laptop0,Fa0,Acceso
+CorpA1,Fa0/12,PC9,Fa0,Acceso
+CorpA1,Fa0/13,Laptop1,Fa0,Acceso
+LiriosA2,Fa0/1,LiriosA1,Fa0/2,Trunk
+LiriosA1,Fa0/10,Laptop3,Fa0,Acceso
+LiriosA1,Fa0/11,PC11,Fa0,Acceso
+LiriosA2,Fa0/10,Laptop2,Fa0,Acceso
+LiriosA2,Fa0/11,PC10,Fa0,Acceso
+PaseoA2,Fa0/2,PaseoA1,Fa0/2,Trunk
+PaseoA1,Fa0/10,PC12,Fa0,Acceso
+PaseoA1,Fa0/11,Laptop4,Fa0,Acceso
+PaseoA2,Fa0/10,PC13,Fa0,Acceso
+PaseoA2,Fa0/11,PC14,Fa0,Acceso

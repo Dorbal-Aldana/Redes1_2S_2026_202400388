@@ -1,0 +1,104 @@
+!
+! RECONSTRUCCION PROPUESTA de SW-Plaza: NO es un show running-config extraido.
+! Revise especialmente direccionamiento, VTP password y rutas antes de aplicar.
+!
+enable
+configure terminal
+hostname SW-Plaza
+no ip domain-lookup
+vtp domain 202400388
+vtp version 1
+vtp mode server
+vtp password Cayala202400388
+spanning-tree mode rapid-pvst
+vlan 18
+ name Z1_PLAZA
+ exit
+vlan 28
+ name Z2_LIRIOS
+ exit
+vlan 38
+ name Z3_CORPORATIVA
+ exit
+vlan 48
+ name Z4_PASEO
+ exit
+vlan 58
+ name Z5_CARDALES
+ exit
+vlan 99
+ name ADMIN_NATIVA
+ exit
+vlan 999
+ name BLACKHOLE
+ exit
+spanning-tree vlan 18 priority 4096
+spanning-tree vlan 99 priority 4096
+interface Fa0/1
+ description Hacia_SW-Corp_Fa0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,99
+ no shutdown
+ exit
+interface Fa0/2
+ description Hacia_SW-Cardales_Fa0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,99
+ no shutdown
+ exit
+interface Fa0/3
+ description Hacia_PlazaA1_Fa0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,18,99
+ no shutdown
+ exit
+interface Fa0/4
+ description Hacia_PlazaA2_Fa0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,18,99
+ no shutdown
+ exit
+interface range GigabitEthernet0/1 - 2
+ description LACP_hacia_SW-Paseo
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,99
+ channel-group 1 mode active
+ no shutdown
+ exit
+interface Port-channel1
+ description LACP_hacia_SW-Paseo
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,99
+ no shutdown
+ exit
+interface range FastEthernet0/5 - 24
+ description BLACKHOLE_PUERTOS_SIN_USO
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+ exit
+! DIRECCIONAMIENTO IP PROPUESTO: gateways compatibles con capturas, mascaras deducidas
+ip routing
+interface vlan 18
+ description Gateway_local_SW-Plaza
+ ip address 192.168.0.11 255.255.255.192
+ no shutdown
+ exit
+interface vlan 99
+ description Red_de_transito_propuesta
+ ip address 10.99.0.1 255.255.255.0
+ no shutdown
+ exit
+ip route 192.168.0.128 255.255.255.224 10.99.0.2
+ip route 192.168.0.160 255.255.255.240 10.99.0.3
+ip route 192.168.0.64 255.255.255.192 10.99.0.4
+ip route 192.168.0.176 255.255.255.240 10.99.0.5
+end
+write memory
+! FIN - Verificacion posterior recomendada: show ip route, show vtp status, show interfaces trunk
